@@ -7,7 +7,7 @@ const DEG_TO_RAD = Math.PI / 180;
 const READOUT_DISTANCE_Z_CM = -17.5;
 const READOUT_HEIGHT_Y_CM = 4.5;
 const READOUT_TILT_DEG = 35.0;
-const MODE_PILL_OFFSET_X_CM = 15.5;
+const MODE_PILL_OFFSET_X_CM = 22.5;
 
 /**
  * Main Lens Studio 5.23.2 BaseScriptComponent entry point for BeatSave.
@@ -223,7 +223,7 @@ export class BeatSaveController extends BaseScriptComponent {
       secObj.setParent(readoutRoot);
       secObj.getTransform().setLocalPosition(new vec3(0, -1.9, 0));
       const textComp = secObj.createComponent("Component.Text") as Text;
-      textComp.size = 95;
+      textComp.size = 82;
       textComp.depthTest = true;
       textComp.textFill.color = new vec4(244 / 255, 243 / 255, 238 / 255, 1.0);
       this.secondaryTextComp = textComp;
@@ -247,7 +247,7 @@ export class BeatSaveController extends BaseScriptComponent {
       labelObj.setParent(pillRoot);
       labelObj.getTransform().setLocalPosition(new vec3(0, 0, 0.08));
       labelComp = labelObj.createComponent("Component.Text") as Text;
-      labelComp.size = 75;
+      labelComp.size = 60;
       labelComp.depthTest = true;
       labelComp.textFill.color = new vec4(244 / 255, 243 / 255, 238 / 255, 1.0);
     }
@@ -269,8 +269,8 @@ export class BeatSaveController extends BaseScriptComponent {
   private createPillBacking(pillRoot: SceneObject, baseMaterial: Material): void {
     const plateObj = global.scene.createSceneObject("ModePillBacking");
     plateObj.setParent(pillRoot);
-    const hw = 6.2;
-    const hh = 1.65;
+    const hw = 9.0;
+    const hh = 1.75;
     const builder = new MeshBuilder([
       { name: "position", components: 3 },
       { name: "normal", components: 3 },
