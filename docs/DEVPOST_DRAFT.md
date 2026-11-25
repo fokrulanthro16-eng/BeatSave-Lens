@@ -1,5 +1,7 @@
 # BeatSave — Devpost Submission Draft
 
+**Demo Video:** https://youtu.be/SLdakCRsrS8
+
 > **Disclaimer:** BeatSave is a hands-free rhythm and counting aid only. It is not a medical diagnostic device and does not measure compression depth, chest recoil, pulse, heart rate, or breathing.
 
 ## Inspiration
@@ -41,5 +43,5 @@ BeatSave was built natively in TypeScript inside **Lens Studio 5.23.2** using th
 - Acoustic pitch cues on beats 28, 29, and 30 let a rescuer prepare for the 5-second breath pause without reading text mid-compression.
 
 ## What's next
-- User comfort, ergonomics, and hand-tracking evaluation on physical Snap Spectacles hardware during multi-minute manikin sessions (`feel unproven`).
+- User comfort, ergonomics, and hand-tracking evaluation on physical Snap Spectacles hardware during multi-minute manikin sessions.
 - Tuning audio gain and surface-contrast visibility across bright indoor and outdoor training environments.

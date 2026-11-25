@@ -4,6 +4,8 @@
 
 Built natively in TypeScript for **Snap SPECS / Lens Studio 5.23.2** (`Specs Base Template With Examples`, `SpectaclesInteractionKit` 0.18.0).
 
+**Demo Video:** [https://youtu.be/SLdakCRsrS8](https://youtu.be/SLdakCRsrS8)
+
 ![BeatSave Preview Cover](devpost/media/thumbnail_1200x675.png)
 
 > **Disclaimer:** BeatSave is a hands-free rhythm and counting aid only. It is not a medical diagnostic device and does not measure compression depth, chest recoil, pulse, heart rate, or breathing.
