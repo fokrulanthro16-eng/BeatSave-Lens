@@ -1,0 +1,13 @@
+{
+  "name": "beatsave-lens",
+  "version": "1.0.0",
+  "description": "World-anchored, hand-clear 110 BPM CPR visual and acoustic pacing ring for Snap SPECS (Lens Studio 5.23.2).",
+  "type": "module",
+  "scripts": {
+    "test": "tsx --test tests/*.test.ts",
+    "audio:generate": "python tools/generate_audio.py",
+    "buzzwords:check": "python tools/check_buzzwords.py"
+  },
+  "author": "BeatSave",
+  "license": "MIT"
+}

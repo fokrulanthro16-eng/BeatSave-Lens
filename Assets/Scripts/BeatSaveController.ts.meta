@@ -1,0 +1,70 @@
+- !<AssetImportMetadata/eebc28e9-3219-41c6-8b06-902c3c7c38bc>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 81d9d7a5-0083-4ff0-a0f2-987a52b70d9c
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 81d9d7a5-0083-4ff0-a0f2-987a52b70d9c
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 0bb5d4c1-9c67-4f18-b62d-b8af420aa106
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/0bb5d4c1-9c67-4f18-b62d-b8af420aa106>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 60d4dff6-766b-4e0c-8988-f73adc6c5428
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    baseUnlitMaterial: false
+    breathChimeAudio: false
+    camera: false
+    cycleLabelText: false
+    deviceTracking: false
+    modePillObject: false
+    readoutText: false
+    woodTickAccentAudio: false
+    woodTickAudio: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - camera: !<reference.Camera> 00000000-0000-0000-0000-000000000000
+      deviceTracking: !<reference.DeviceTracking> 00000000-0000-0000-0000-000000000000
+      baseUnlitMaterial: !<reference.Material> 00000000-0000-0000-0000-000000000000
+      woodTickAudio: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
+      woodTickAccentAudio: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
+      breathChimeAudio: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
+      readoutText: !<reference.Text3D> 00000000-0000-0000-0000-000000000000
+      cycleLabelText: !<reference.Text3D> 00000000-0000-0000-0000-000000000000
+      modePillObject: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @input Component.Camera camera {"hint":"Scene Camera used for surface raycasting and floor-plane fallback"}'
+    - '// @input Component.DeviceTracking deviceTracking {"hint":"Optional DeviceTracking component for World tracking mode"}'
+    - '// @input Asset.Material baseUnlitMaterial {"hint":"Unlit base material used for procedural ticks and rings"}'
+    - '// @input Asset.AudioTrackAsset woodTickAudio {"hint":"45 ms damped wooden tick audio track (Assets/Audio/wood_tick.wav)"}'
+    - '// @input Asset.AudioTrackAsset woodTickAccentAudio {"hint":"55 ms accented wooden tick audio track (Assets/Audio/wood_tick_accent.wav)"}'
+    - '// @input Asset.AudioTrackAsset breathChimeAudio {"hint":"420 ms harmonic two-note breath chime (Assets/Audio/breath_chime.wav)"}'
+    - '// @input Component.Text3D readoutText {"hint":"Optional pre-placed Text3D for primary beat/countdown readout"}'
+    - '// @input Component.Text3D cycleLabelText {"hint":"Optional pre-placed Text3D for cycle/mode sub-label"}'
+    - '// @input SceneObject modePillObject {"hint":"Optional SIK Interactable SceneObject for the 30:2 / HANDS-ONLY spatial pill"}'
