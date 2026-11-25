@@ -47,4 +47,6 @@ __pycache__/
 *.py[cod]
 .DS_Store
 Thumbs.db
+desktop.ini
+temp_vo/
 *.log

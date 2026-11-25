@@ -1,67 +1,92 @@
 # BeatSave
 
-**Lock a 110 BPM CPR pacing ring onto the floor. Keep both hands free when every second counts.**
+**Look down. Pinch once. Keep the beat.** — Hands-free 110 BPM CPR pacer for Snap Spectacles.
 
-Built natively in TypeScript for **Snap SPECS / Lens Studio 5.23.2** (`Specs Base Template With Examples`, `SpectaclesInteractionKit` 0.18.0).
+![Lens Studio 5.23.2](https://img.shields.io/badge/Lens%20Studio-5.23.2-141413)
+![SIK 0.18.0](https://img.shields.io/badge/SIK-0.18.0-6E6D68)
+![TypeScript](https://img.shields.io/badge/Language-TypeScript-E63946)
+![Tempo 110 BPM](https://img.shields.io/badge/Tempo-110%20BPM-141413)
+![License MIT](https://img.shields.io/badge/License-MIT-6E6D68)
 
-**Demo Video:** [https://youtu.be/SLdakCRsrS8](https://youtu.be/SLdakCRsrS8)
+[![BeatSave Demo Video](devpost/media/thumbnail_1200x675.png)](https://youtu.be/SLdakCRsrS8)
 
-![BeatSave Preview Cover](devpost/media/thumbnail_1200x675.png)
+Watch the 46-second demo in Lens Studio 5.23.2 (`SPECS 27`, `Sunlit Room`): [https://youtu.be/SLdakCRsrS8](https://youtu.be/SLdakCRsrS8)
 
-> **Disclaimer:** BeatSave is a hands-free rhythm and counting aid only. It is not a medical diagnostic device and does not measure compression depth, chest recoil, pulse, heart rate, or breathing.
+---
 
-## What BeatSave Does
-BeatSave anchors a 26 cm (0.26 m) visual and acoustic CPR pacing ring onto a flat surface (floor, cushion, or training manikin) with a single pinch:
+## Why It Exists
 
-- **110 BPM Rhythm:** Exact `60 / 110 s` (`0.5455 s`) interval centered within the AHA 100-120 BPM guideline.
-- **Hand-Clear Geometry:** Leaves an unobstructed ~16 cm inner zone for stacked hands while 30 radial ticks illuminate around the outer perimeter and a 19 cm Signal Coral ring pulses smoothly outside the hand area.
-- **35° World-Locked Readout:** Sits 17.5 cm beyond the top edge of the ring, angled 35° toward the kneeling rescuer so arms never hide the count (`01 / 30`, `CYCLE 1`, or `2 BREATHS` + `5.0s` countdown).
-- **Two AHA Modes:**
-  - `30:2` (Default): 30 compressions (with raised wooden pitch and Signal Coral accents on beats 28, 29, and 30) followed by a `5.0 s` breath window, then automatically advances to Cycle 2, 3, and beyond.
-  - `HANDS-ONLY`: Continuous 110 BPM pacing with a 30-beat visual lap counter, toggled via the spatial pill beside the readout.
-- **Natural Acoustic Cues:** Three offline 44.1 kHz 16-bit mono PCM `.wav` clips (`wood_tick.wav`, `wood_tick_accent.wav`, `breath_chime.wav`) synthesized with zero harsh square-wave beeps.
+During CPR, a rescuer has no free hand to unlock a phone, prop up a screen, or count to 30 under stress.
+BeatSave anchors a 26 cm visual and acoustic pacing ring onto the floor around the rescuer's hands on Snap Spectacles.
+A 16 cm open center keeps stacked hands unobstructed while the 35-degree readout stays visible above the rim.
 
-## Live Lens Studio 5.23.2 Captures
+---
 
-Demo recording: [beatsave_demo.mp4](devpost/media/beatsave_demo.mp4) (1920x1080 H.264 + 44.1 kHz AAC, assembled from sequential Lens Studio Preview captures synced to log timestamps and `Assets/Audio/*.wav` cues).
+## Live State Walkthrough
 
-| Surface Placement (`PLACING`) | Active Pacing (`30:2`) | Breath Window (`2 BREATHS`) | Hands-Only Mode |
-| --- | --- | --- | --- |
-| ![Placing](devpost/media/01_placing_surface_lock.png) | ![Pacing 30:2](devpost/media/02_pacing_110bpm_30_2.png) | ![Breath Phase](devpost/media/04_breath_phase.png) | ![Hands-Only](devpost/media/03_mode_hands_only.png) |
+| `PLACING` | `30:2 PACING` | `2 BREATHS` | `HANDS-ONLY` |
+| :---: | :---: | :---: | :---: |
+| ![Surface Placement](devpost/media/01_placing_surface_lock.png) | ![110 BPM 30:2 Pacing](devpost/media/02_pacing_110bpm_30_2.png) | ![Breath Window](devpost/media/04_breath_phase.png) | ![Hands-Only Mode](devpost/media/03_mode_hands_only.png) |
+| Ring glides over the floor under gaze until locked with one pinch. | 30 radial ticks advance at 110 BPM (`60/110 s`) with coral + pitch accents on beats 28–30. | 5.0 s breath countdown plays a harmonic chime before starting the next cycle. | Spatial pill toggles continuous 110 BPM pacing with a 30-beat lap counter. |
 
-## Setup & Run in Lens Studio 5.23.2
-1. Open `BeatSave-Lens.esproj` in **Lens Studio 5.23.2** (do not upgrade to 5.25+ or install 5.25+ preview packages).
-2. In the **Preview** panel, set **Device Type Override** to **SPECS** (or **Simulation Mode** to **SPECS 27**), set Input to **Interactive**, and unmute Preview audio.
-3. Controls in Interactive Preview:
-   - `Space` or click/pinch: Lock the ring to the surface and start Beat 1 (`COMPRESSIONS`); subsequent short taps pause/resume (`PAUSED`).
-   - `M` (or pinch `MODE: 30:2` pill): Toggle between `30:2` and `HANDS-ONLY`.
-   - `R` (or hold pinch `1.2 s` on Spectacles): Unlock and return to `PLACING` to reposition.
+---
 
-## Color Palette
-- Matte Obsidian: `#141413`
-- Warm Off-White: `#F4F3EE`
-- Signal Coral: `#E63946`
-- Muted Slate: `#6E6D68`
+## Architecture & Zero-Allocation Design
 
-## Project Structure
-- `BeatSave-Lens.esproj` — Lens Studio 5.23.2 Spectacles project manifest (`SpectaclesInteractionKit` 0.18.0)
-- `Assets/Scene.scene` — Native Lens Studio scene wiring `Camera Object`, `Device Tracking`, `BeatSaveUnlit.mat`, `ModeTogglePill`, and `BeatSaveController`
-- `Assets/Scripts/PacingState.ts` — Pure TypeScript 110 BPM state machine (unit-tested)
-- `Assets/Scripts/RingBuilder.ts` — Procedural 26 cm dial, 30 radial ticks, and 19 cm spring pulse ring via `MeshBuilder`
-- `Assets/Scripts/SurfaceAnchor.ts` — `WorldQueryModule` surface hit-test + preview floor-plane fallback
-- `Assets/Scripts/BeatSaveController.ts` — Main `BaseScriptComponent` controller (`GestureModule`, `Interactable`, `TapEvent`, `KeyPressEvent`)
-- `Assets/Audio/` — `wood_tick.wav`, `wood_tick_accent.wav`, `breath_chime.wav`
-- `tools/generate_audio.py` — Standard-library WAV synthesizer and header/clipping verifier
-- `tools/check_buzzwords.py` — Documentation and brief buzzword scanner
-- `tests/pacing-state.test.ts` — Automated timing, cycle, mode, pause/resume, and hold-reset tests
-- `devpost/design-brief.md` — `plan-lens` spatial design brief
-- `devpost/media/` — Captured Preview screenshots, 1200x675 thumbnail, and `beatsave_demo.mp4`
-- `docs/DEVPOST_DRAFT.md` — Submission write-up
-- `docs/DEMO_SCRIPT.md` — Timestamped voiceover script synced to `beatsave_demo.mp4`
+```mermaid
+flowchart LR
+  SA["SurfaceAnchor.ts\nWorldQueryModule + floor fallback"] --> BC["BeatSaveController.ts\nGestureModule / SIK / Tap / Keys"]
+  BC --> PS["PacingState.ts\nPure 110 BPM state machine"]
+  PS --> RB["RingBuilder.ts\n30 ticks + 19 cm coral ring"]
+  PS --> AC["Assets/Audio/*.wav\n44.1 kHz wood tick & breath chime"]
+```
 
-## Verification Commands & Status
-- **TypeScript & Lens Studio Compilation:** `RecompileTypeScriptTool` (`succeeded`) and `tsc -p Cache/TypeScript/Src/tsconfig.json --noEmit` (0 errors in `Assets/Scripts/*`).
-- **State Machine Unit Tests:** `tsx --test tests/*.test.ts` (6/6 passing across 150-beat multi-cycle drift, 30:2 breath transition, HANDS-ONLY mode, pause/resume, and `1.2 s` hold-to-reset).
-- **Audio & Docs Checks:** `python tools/generate_audio.py` (all 3 `.wav` files 44.1 kHz 16-bit mono, peak <= 0.90) and `python tools/check_buzzwords.py` (0 hits).
-- **Runtime Interaction Check:** Driven in Lens Studio 5.23.2 Preview (`SPECS 27` override, `errors: []`) confirming `PLACING -> COMPRESSIONS -> BREATH_PAUSE -> COMPRESSIONS (Cycle 2) -> HANDS_ONLY -> PLACING`.
-- **Lens Studio 5.23.2 LEAF Note:** Asset Library `Leaf` 4.0.0 targets Lens Studio 5.25+, `Leaf` 3.0.0 returns HTTP 404 on install, and `[ChatTool] LEAF Plugin` 5.23.0 faults with `InternalError: Panel can not be null`. Runtime verification in 5.23.2 therefore relies on `RunAndCollectLogsTool`, live Preview captures, and the Node unit suite.
+- **Zero per-frame allocations:** `RingBuilder.ts` pre-builds the 26 cm outer track, perimeter hairline, 30 radial ticks, and 19 cm inner pulse ring on startup, updating tick materials only on state transitions via dirty-state guards.
+- **Exact 110 BPM timing:** `PacingState.ts` isolates timing math from engine globals and is verified across 150 beats (5 full cycles) in both `30:2` and `HANDS-ONLY` modes with zero cumulative drift.
+- **Additive optics palette:** Strictly uses Matte Obsidian (`#141413`), Warm Off-White (`#F4F3EE`), Signal Coral (`#E63946`), and Muted Slate (`#6E6D68`).
+
+---
+
+## Quickstart & Verification
+
+### Run in Lens Studio 5.23.2
+1. Open `BeatSave-Lens.esproj` in **Lens Studio 5.23.2** (do not upgrade to 5.25+ packages).
+2. In the **Preview** panel, set **Simulation Mode** to **SPECS 27**, select **Sunlit Room** (or **Plane**), set input to **Interactive**, and unmute Preview audio.
+3. Controls:
+   - **Pinch** or `Space`: Lock ring and start Beat 1 (`COMPRESSIONS`); short tap pauses/resumes (`PAUSED`).
+   - **Mode Pill** or `M`: Toggle `30:2` and `HANDS-ONLY`.
+   - **Hold Pinch (1.2 s)** or `R`: Unlock and return to `PLACING`.
+
+### Run Automated Checks
+```bash
+tsx --test tests/*.test.ts
+python tools/generate_audio.py
+python tools/check_buzzwords.py
+```
+
+---
+
+## Honest Scope & Boundaries
+
+BeatSave is a **rhythm and counting aid only**—not a medical diagnostic device. It does **not** measure chest compression depth, chest recoil, pulse, heart rate, or breathing. All timing logic and runtime transitions are verified in Lens Studio 5.23.2 Preview simulator (`SPECS 27`) and automated Node tests; comfort, ergonomics, and hand-tracking stability during multi-minute manikin sessions remain to be evaluated on physical Snap Spectacles hardware.
+
+---
+
+## Repository Layout
+
+```text
+BeatSave-Lens/
+├── BeatSave-Lens.esproj      # Lens Studio 5.23.2 Spectacles manifest (SIK 0.18.0)
+├── Assets/
+│   ├── Scene.scene           # Wired camera, DeviceTracking, BeatSaveUnlit.mat, ModeTogglePill
+│   ├── Scripts/              # PacingState.ts, RingBuilder.ts, SurfaceAnchor.ts, BeatSaveController.ts
+│   ├── Materials/            # BeatSaveUnlit.mat & unlit.graphShader
+│   └── Audio/                # wood_tick.wav, wood_tick_accent.wav, breath_chime.wav
+├── devpost/
+│   ├── design-brief.md       # Spatial design brief
+│   └── media/                # Preview screenshots, thumbnail_1200x675.png, beatsave_demo.mp4
+├── docs/                     # DEVPOST_DRAFT.md & synced DEMO_SCRIPT.md
+├── tests/                    # Automated 110 BPM multi-cycle Node unit tests
+├── tools/                    # Audio generator, buzzword scanner, and desktop recorder
+└── LICENSE                   # MIT License
+```
